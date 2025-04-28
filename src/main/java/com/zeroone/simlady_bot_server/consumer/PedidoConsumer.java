@@ -24,7 +24,7 @@ public class PedidoConsumer {
 
     @RabbitListener(queues = "${rabbitmq.queue.orders}")
     public void consumirPedido(String mensagemJson) {
-        
+
         try {
 
             Pedido pedido = objectMapper.readValue(mensagemJson, Pedido.class);
@@ -45,7 +45,6 @@ public class PedidoConsumer {
         sb.append("🆔 ID do pedido: ").append(pedido.getId()).append("\n");
         sb.append("👤 Cliente: ").append(pedido.getNomeUsuario()).append("\n");
 
-        // Formatação melhorada para contatos
         if (!pedido.getContatosUsuario().isEmpty()) {
             sb.append("\n📱 *Contatos:*\n");
             pedido.getContatosUsuario().forEach(contato -> {
@@ -68,7 +67,7 @@ public class PedidoConsumer {
                 .sum();
 
         sb.append("\n💵 *Total: R$ ").append(String.format("%.2f", total)).append("*").append("\n\n");
-        sb.append("Data e hora do pedido: ").append(LocalDateTime.now().format(formatter)).append("\n");
+        sb.append("Data e hora do pedido: ").append(LocalDateTime.now().minusHours(3).format(formatter)).append("\n");
 
         return sb.toString();
     }
