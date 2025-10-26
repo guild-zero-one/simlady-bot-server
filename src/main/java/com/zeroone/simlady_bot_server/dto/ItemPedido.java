@@ -1,16 +1,18 @@
 package com.zeroone.simlady_bot_server.dto;
 
+import java.util.UUID;
+
 public class ItemPedido {
-    private Long id;
+    private UUID id;
     private Long idProduto;
     private Integer quantidade;
     private Double precoUnitario;
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
