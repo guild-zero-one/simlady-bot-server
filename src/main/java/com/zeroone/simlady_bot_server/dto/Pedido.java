@@ -1,43 +1,34 @@
 package com.zeroone.simlady_bot_server.dto;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Set;
 import java.util.UUID;
 
-public class Pedido {
-    private UUID id;
+@Data
+public class Pedido implements Serializable {
+
+    @JsonProperty("pedidoId")
+    private UUID pedidoId;
+
+    @JsonProperty("usuarioId")
+    private UUID usuarioId;
+
+    @JsonProperty("nomeUsuario")
     private String nomeUsuario;
-    private List<String> contatosUsuario;
-    private List<ItemPedido> itens;
 
-    public UUID getId() {
-        return id;
-    }
+    @JsonProperty("contatosUsuario")
+    private Set<String> contatosUsuario;
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
+    @JsonProperty("dataCriacao")
+    private LocalDateTime dataCriacao;
 
-    public String getNomeUsuario() {
-        return nomeUsuario;
-    }
+    @JsonProperty("status")
+    private String status;
 
-    public void setNomeUsuario(String nomeUsuario) {
-        this.nomeUsuario = nomeUsuario;
-    }
-
-    public List<String> getContatosUsuario() {
-        return contatosUsuario;
-    }
-
-    public void setContatosUsuario(List<String> contatosUsuario) {
-        this.contatosUsuario = contatosUsuario;
-    }
-
-    public List<ItemPedido> getItens() {
-        return itens;
-    }
-
-    public void setItens(List<ItemPedido> itens) {
-        this.itens = itens;
-    }
+    @JsonProperty("valorTotal")
+    private Double valorTotal;
 }
